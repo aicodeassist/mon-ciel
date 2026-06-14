@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MON CIEL — Архітектурні натяжні стелі у Дніпрі</title>
+<meta name="description" content="Натяжні стелі архітектурного рівня у Дніпрі. Тіньові профілі, світлові лінії, зоряне небо. Гарантія 25 років. Премиум-якість монтажу.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0B0B0D;
+  --bg-2: #131317;
+  --bg-3: #1A1A20;
+  --surface: #18181D;
+  --line: rgba(255,255,255,0.08);
+  --line-2: rgba(255,255,255,0.15);
+  --text: #F4F2EE;
+  --text-dim: #8A8A92;
+  --text-faint: #5A5A62;
+  --accent: #C9A875;
+  --accent-bright: #E4C896;
+  --accent-deep: #8B7347;
+  --head: 'Manrope', system-ui, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--head);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; }
+h1, h2, h3, h4 { font-weight: 500; line-height: 1.05; letter-spacing: -0.03em; }
+
+/* ============ CONTAINER ============ */
+.wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 64px);
+}
+.section {
+  padding: clamp(80px, 10vw, 160px) 0;
+  position: relative;
+}
+
+/* ============ TOP NAV ============ */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px clamp(20px, 4vw, 64px);
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+}
+.topnav.scrolled {
+  background: rgba(11,11,13,0.85);
+  backdrop-filter: blur(20px);
+  padding: 16px clamp(20px, 4vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.3em;
+  display: flex; align-items: center; gap: 12px;
+}
+.brand-mark {
+  width: 32px; height: 32px;
+  border: 1px solid var(--accent);
+  position: relative;
+  display: grid; place-items: center;
+}
+.brand-mark::before {
+  content: '';
+  width: 12px; height: 12px;
+  background: var(--accent);
+}
+.brand span:last-child { font-weight: 300; letter-spacing: 0.3em; }
+
+.nav-actions { display: flex; gap: 28px; align-items: center; }
+.nav-phone {
+  font-size: 16px; font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+.nav-phone:hover { color: var(--accent); }
+.lang-switch {
+  display: flex; gap: 8px; font-size: 13px;
+  padding-left: 20px; border-left: 1px solid var(--line);
+}
+.lang-switch a { color: var(--text-faint); transition: color 0.3s; }
+.lang-switch a.active, .lang-switch a:hover { color: var(--text); }
+.menu-trigger {
+  width: 48px; height: 48px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  display: grid; place-items: center;
+  transition: all 0.3s var(--ease);
+}
+.menu-trigger:hover {
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+.burger { width: 18px; height: 10px; position: relative; }
+.burger span {
+  position: absolute; left: 0; right: 0;
+  height: 1px; background: var(--text);
+  transition: transform 0.3s;
+}
+.burger span:first-child { top: 0; }
+.burger span:last-child { bottom: 0; }
+
+/* ============ FULL-SCREEN NAV ============ */
+.overlay-nav {
+  position: fixed; inset: 0; z-index: 99;
+  background: var(--bg);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s var(--ease);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.overlay-nav.open { opacity: 1; pointer-events: all; }
+.overlay-left {
+  padding: clamp(100px, 12vh, 180px) clamp(40px, 6vw, 120px);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.overlay-right {
+  background: #000;
+  position: relative; overflow: hidden;
+}
+.overlay-right img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.6;
+  transform: scale(1.1);
+  transition: transform 1.2s var(--ease);
+}
+.overlay-nav.open .overlay-right img { transform: scale(1); }
+
+.overlay-nav ul {
+  display: flex; flex-direction: column;
+  gap: clamp(16px, 2vh, 28px);
+}
+.overlay-nav li {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.overlay-nav.open li { opacity: 1; transform: translateY(0); }
+.overlay-nav.open li:nth-child(1) { transition-delay: 0.15s; }
+.overlay-nav.open li:nth-child(2) { transition-delay: 0.25s; }
+.overlay-nav.open li:nth-child(3) { transition-delay: 0.35s; }
+.overlay-nav.open li:nth-child(4) { transition-delay: 0.45s; }
+.overlay-nav.open li:nth-child(5) { transition-delay: 0.55s; }
+
+.overlay-nav a {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+  padding: 8px 0;
+}
+.overlay-nav a::before {
+  content: ''; position: absolute;
+  left: 0; bottom: 0; width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.5s var(--ease);
+}
+.overlay-nav a:hover { color: var(--accent); }
+.overlay-nav a:hover::before { width: 100%; }
+.overlay-nav .nav-num {
+  font-family: var(--head); font-style: normal;
+  font-size: 12px; color: var(--text-faint);
+  letter-spacing: 0.2em; margin-right: 20px;
+}
+
+.overlay-bottom {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+  font-size: 13px; color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.overlay-bottom strong { color: var(--text); display: block; margin-bottom: 8px; font-size: 11px; letter-spacing: 0.25em; font-weight: 500; }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: flex-end;
+  padding: 0 0 clamp(60px, 8vh, 120px);
+  overflow: hidden;
+}
+.hero-media {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+.hero-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,11,13,0.4) 0%, rgba(11,11,13,0.2) 40%, rgba(11,11,13,0.9) 100%);
+}
+.hero-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+@keyframes kenBurns {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.15); }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  width: 100%;
+}
+.hero h1 {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 12px; letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 1.2s var(--ease) 0.2s forwards;
+}
+
+.hero-tag {
+  font-family: var(--serif);
+  font-size: clamp(52px, 9vw, 140px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  max-width: 1200px;
+  opacity: 0;
+  animation: fadeUp 1.2s var(--ease) 0.4s forwards;
+}
+
+.hero-tag em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.hero-tag::before {
+  content: ''; width: 40px; height: 1px; background: var(--accent);
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: clamp(30px, 5vw, 80px);
+  margin-top: clamp(40px, 6vh, 80px);
+  align-items: end;
+  opacity: 0;
+  animation: fadeUp 1.2s var(--ease) 0.7s forwards;
+}
+.hero-lead {
+  max-width: 620px;
+  font-size: 16px; color: var(--text-dim);
+  line-height: 1.6;
+}
+.hero-cta {
+  display: flex; gap: 16px;
+}
+.hero-scroll {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--text-faint);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  position: absolute;
+  right: clamp(20px, 4vw, 64px);
+  bottom: clamp(60px, 8vh, 120px);
+  z-index: 2;
+}
+.hero-scroll::after {
+  content: ''; display: block;
+  width: 1px; height: 60px;
+  background: var(--text-faint);
+  margin: 16px auto 0;
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(0.3); }
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(30px); }
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 18px 36px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.4s var(--ease);
+  position: relative; overflow: hidden;
+  border-radius: 6px;
+}
+.btn-accent {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-accent:hover {
+  background: var(--accent-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -20px rgba(201, 168, 117, 0.5);
+}
+.btn-ghost {
+  border: 1px solid var(--line-2);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-arrow {
+  width: 32px; height: 1px; background: currentColor; position: relative;
+  transition: width 0.4s var(--ease);
+}
+.btn-arrow::after {
+  content: ''; position: absolute;
+  right: 0; top: 50%;
+  width: 8px; height: 8px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+.btn:hover .btn-arrow { width: 48px; }
+
+/* ============ MARQUEE ============ */
+.marquee {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.marquee-track {
+  display: flex; gap: 60px;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: flex; align-items: center; gap: 60px;
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 300;
+  font-style: italic;
+  color: var(--text-dim);
+}
+.marquee-item::after {
+  content: '✦'; color: var(--accent); font-style: normal;
+}
+
+/* ============ PHILOSOPHY ============ */
+.philo {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(40px, 6vw, 120px);
+  align-items: center;
+}
+.philo-label {
+  font-size: 12px; letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 14px;
+}
+.philo-label::before {
+  content: ''; width: 40px; height: 1px; background: var(--accent);
+}
+.philo h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 40px;
+}
+.philo h2 em { font-style: italic; color: var(--accent); }
+.philo-text {
+  font-size: 17px; color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 540px;
+}
+.philo-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 12px; letter-spacing: 0.15em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.philo-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.philo-visual img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.philo-visual:hover img { transform: scale(1.05); }
+.philo-badge {
+  position: absolute;
+  bottom: 32px; left: 32px;
+  background: rgba(11,11,13,0.85);
+  backdrop-filter: blur(10px);
+  padding: 20px 28px;
+  border-left: 2px solid var(--accent);
+}
+.philo-badge-num {
+  font-family: var(--serif);
+  font-size: 36px; font-weight: 300;
+  color: var(--accent);
+}
+.philo-badge-text {
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ============ TECHNOLOGIES ============ */
+.tech-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+.tech-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 1;
+}
+.tech-head h2 em { font-style: italic; color: var(--accent); }
+.tech-head p {
+  font-size: 17px; color: var(--text-dim);
+  max-width: 480px; justify-self: end;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+.tech-card {
+  background: var(--bg);
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tech-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+  opacity: 0.85;
+}
+.tech-card:hover img { transform: scale(1.08); opacity: 1; }
+.tech-card-content {
+  position: absolute; inset: 0;
+  padding: 40px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, transparent 40%, rgba(11,11,13,0.95) 100%);
+}
+.tech-card-num {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--accent);
+  font-style: italic;
+}
+.tech-card h3 {
+  font-family: var(--serif);
+  font-size: 32px; font-weight: 300;
+  margin-bottom: 12px;
+}
+.tech-card p {
+  font-size: 14px; color: var(--text-dim);
+  max-width: 300px;
+}
+.tech-card-arrow {
+  position: absolute;
+  top: 32px; right: 32px;
+  width: 44px; height: 44px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  transition: all 0.4s var(--ease);
+}
+.tech-card:hover .tech-card-arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(-45deg);
+}
+.tech-card-arrow svg { stroke: currentColor; transition: stroke 0.4s; }
+.tech-card:hover .tech-card-arrow svg { stroke: var(--bg); }
+
+/* ============ CALCULATOR ============ */
+.calc {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.calc-head {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.calc-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.calc-head h2 em { font-style: italic; color: var(--accent); }
+.calc-head p { color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+
+.calc-wrap {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.calc-main { background: var(--bg); padding: clamp(32px, 4vw, 56px); }
+.calc-side { background: var(--bg-2); padding: clamp(32px, 4vw, 48px); display: flex; flex-direction: column; }
+
+.calc-progress {
+  display: flex; gap: 8px; margin-bottom: 48px;
+}
+.calc-progress-bar {
+  flex: 1; height: 2px; background: var(--line);
+  position: relative;
+}
+.calc-progress-bar.active { background: var(--accent); }
+.calc-progress-bar.active::after {
+  content: ''; position: absolute;
+  right: -4px; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(201, 168, 117, 0.2);
+}
+.calc-step-label {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.calc-step h3 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+.calc-step > p { color: var(--text-dim); margin-bottom: 40px; }
+
+.calc-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.calc-opt {
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  text-align: left;
+  transition: all 0.3s var(--ease);
+  position: relative;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.calc-opt:hover { border-color: var(--line-2); }
+.calc-opt.active {
+  border-color: var(--accent);
+  background: rgba(201, 168, 117, 0.05);
+}
+.calc-opt-name {
+  font-size: 15px; font-weight: 500;
+  color: var(--text);
+}
+.calc-opt-meta {
+  font-size: 12px; color: var(--text-faint);
+  letter-spacing: 0.05em;
+}
+.calc-opt.active .calc-opt-name { color: var(--accent); }
+.calc-opt.active .calc-opt-meta { color: var(--accent-deep); }
+
+.calc-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.calc-field {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.calc-field label {
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+.calc-field input {
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 16px 20px;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 22px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.calc-field input:focus { border-color: var(--accent); }
+
+.calc-room-types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.room-type {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  transition: all 0.3s var(--ease);
+}
+.room-type svg { stroke: var(--text-dim); transition: stroke 0.3s; }
+.room-type:hover { border-color: var(--line-2); }
+.room-type:hover svg { stroke: var(--text); }
+.room-type.active { border-color: var(--accent); background: rgba(201,168,117,0.05); }
+.room-type.active svg { stroke: var(--accent); }
+.room-type span { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; }
+
+.calc-lighting {
+  display: flex; flex-direction: column;
+}
+.light-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.light-item:last-child { border-bottom: none; }
+.light-name { font-size: 15px; font-weight: 500; }
+.light-price { font-size: 13px; color: var(--text-faint); }
+.qty {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-3);
+  padding: 4px;
+  min-width: 120px;
+  justify-content: space-between;
+}
+.qty button {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  color: var(--text);
+  transition: background 0.2s;
+}
+.qty button:hover { background: var(--line); }
+.qty-val {
+  font-family: var(--serif);
+  font-size: 18px;
+  min-width: 28px; text-align: center;
+}
+
+.calc-nav {
+  display: flex; justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+/* Side panel */
+.calc-side-label {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.calc-side h4 {
+  font-family: var(--serif);
+  font-size: 24px; font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.room-viz {
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.room-viz svg { width: 100%; height: 100%; }
+
+.spec-row {
+  display: flex; justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row span:first-child { color: var(--text-dim); }
+.spec-row span:last-child { color: var(--text); font-weight: 500; }
+
+.calc-total {
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.calc-total-label {
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.calc-total-val {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.calc-total-currency {
+  font-family: var(--head);
+  font-size: 20px;
+  color: var(--text-dim);
+}
+.calc-total-note {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+.calc-submit {
+  margin-top: 24px;
+  width: 100%;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ============ PORTFOLIO ============ */
+.port-head {
+  display: flex; justify-content: space-between;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.port-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300;
+}
+.port-head h2 em { font-style: italic; color: var(--accent); }
+
+.port-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.port-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.port-item:nth-child(1) { grid-column: span 7; aspect-ratio: 16/10; }
+.port-item:nth-child(2) { grid-column: span 5; aspect-ratio: 4/5; }
+.port-item:nth-child(3) { grid-column: span 5; aspect-ratio: 4/5; }
+.port-item:nth-child(4) { grid-column: span 7; aspect-ratio: 16/10; }
+.port-item:nth-child(5) { grid-column: span 6; aspect-ratio: 4/3; }
+.port-item:nth-child(6) { grid-column: span 6; aspect-ratio: 4/3; }
+
+.port-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+.port-item:hover img { transform: scale(1.08); }
+.port-info {
+  position: absolute; inset: 0;
+  padding: 32px;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, transparent 40%, rgba(11,11,13,0.95) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.port-item:hover .port-info { opacity: 1; }
+.port-cat {
+  font-size: 11px; letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.port-name {
+  font-family: var(--serif);
+  font-size: 24px; font-weight: 300;
+  margin-bottom: 4px;
+}
+.port-loc { font-size: 13px; color: var(--text-dim); }
+
+/* ============ PROCESS ============ */
+.proc-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.proc-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 300;
+}
+.proc-head h2 em { font-style: italic; color: var(--accent); }
+
+.proc-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+.proc-item {
+  background: var(--bg);
+  padding: clamp(24px, 3vw, 40px);
+  min-height: 360px;
+  display: flex; flex-direction: column;
+  transition: background 0.4s;
+}
+.proc-item:hover { background: var(--bg-2); }
+.proc-num {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--accent);
+  font-style: italic;
+  margin-bottom: auto;
+}
+.proc-title {
+  font-family: var(--serif);
+  font-size: 24px; font-weight: 300;
+  margin-bottom: 12px;
+}
+.proc-desc {
+  font-size: 14px; color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ============ TESTIMONIALS ============ */
+.testi {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+.testi-side h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+.testi-side h2 em { font-style: italic; color: var(--accent); }
+.testi-rating {
+  display: flex; gap: 4px; margin-bottom: 16px;
+}
+.testi-rating span { color: var(--accent); font-size: 20px; }
+.testi-rating-text {
+  font-size: 14px; color: var(--text-dim);
+}
+
+.testi-card {
+  padding: clamp(32px, 4vw, 56px);
+  border: 1px solid var(--line);
+  position: relative;
+}
+.testi-quote-mark {
+  font-family: var(--serif);
+  font-size: 120px;
+  color: var(--accent);
+  line-height: 0.5;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.testi-text {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+.testi-author {
+  display: flex; justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.testi-name { font-weight: 500; margin-bottom: 4px; }
+.testi-loc { font-size: 13px; color: var(--text-dim); }
+.testi-project {
+  font-size: 12px; letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ============ CTA ============ */
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(100px, 14vh, 200px) 0;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  opacity: 0.4;
+}
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,11,13,0.7) 0%, rgba(11,11,13,0.95) 100%);
+}
+.cta-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 800px; margin: 0 auto;
+}
+.cta-label {
+  font-size: 12px; letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.cta h2 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 96px);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.cta h2 em { font-style: italic; color: var(--accent); }
+.cta p {
+  font-size: 18px; color: var(--text-dim);
+  margin-bottom: 48px;
+  max-width: 600px; margin-inline: auto;
+}
+.cta-actions {
+  display: flex; gap: 16px; justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 80px 0 40px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+.foot-brand h3 {
+  font-family: var(--serif);
+  font-size: 48px; font-weight: 300;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.foot-brand p {
+  font-size: 15px; color: var(--text-dim);
+  max-width: 320px; line-height: 1.7;
+}
+.foot-col h5 {
+  font-size: 11px; letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+.foot-col a, .foot-col p {
+  display: block;
+  font-size: 14px; color: var(--text-dim);
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+.foot-col a:hover { color: var(--accent); }
+.foot-bottom {
+  display: flex; justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--text-faint);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .philo, .testi-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-wrap { grid-template-columns: 1fr; }
+  .proc-list { grid-template-columns: repeat(2, 1fr); }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .port-item:nth-child(n) { grid-column: span 6; aspect-ratio: 4/3; }
+  .overlay-nav { grid-template-columns: 1fr; }
+  .overlay-right { display: none; }
+  .hero-meta { grid-template-columns: 1fr; }
+  .tech-head { grid-template-columns: 1fr; }
+  .tech-head p { justify-self: start; }
+  .nav-phone, .lang-switch { display: none; }
+}
+@media (max-width: 640px) {
+  .tech-grid, .proc-list { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+  .calc-options, .calc-room-types { grid-template-columns: 1fr 1fr; }
+  .port-item:nth-child(n) { grid-column: span 12; }
+  .hero-scroll { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOP NAV ============ -->
+<header class="topnav" id="topnav">
+  <a href="#" class="brand">
+    <span>MON</span>
+    <span> CIEL</span>
+  </a>
+  <div class="nav-actions">
+    <a href="tel:+380671234567" class="nav-phone">+380 67 123 45 67</a>
+    <div class="lang-switch">
+      <a href="#" class="active">UA</a>
+      <a href="#">RU</a>
+    </div>
+    <button class="menu-trigger" onclick="toggleNav()" aria-label="Меню">
+      <div class="burger"><span></span><span></span></div>
+    </button>
+  </div>
+</header>
+
+<!-- ============ FULL-SCREEN NAV ============ -->
+<div class="overlay-nav" id="overlayNav">
+  <div class="overlay-left">
+    <nav>
+      <ul>
+        <li><a href="#philosophy" onclick="closeNav()"><span class="nav-num">01</span>Філософія</a></li>
+        <li><a href="#technologies" onclick="closeNav()"><span class="nav-num">02</span>Каталог</a></li>
+        <li><a href="#calculator" onclick="closeNav()"><span class="nav-num">03</span>Калькулятор</a></li>
+        <li><a href="#portfolio" onclick="closeNav()"><span class="nav-num">04</span>Проєкти</a></li>
+        <li><a href="#contact" onclick="closeNav()"><span class="nav-num">05</span>Контакти</a></li>
+      </ul>
+    </nav>
+    <div class="overlay-bottom">
+      <div>
+        <strong>Адреса</strong>
+        Дніпро, вул. Січових Стрільців, 15
+      </div>
+      <div>
+        <strong>Зв'язок</strong>
+        +380 67 123 45 67<br>
+        info@MON CIEL.com
+      </div>
+    </div>
+  </div>
+  <div class="overlay-right">
+    <img id="navImage" src="unnamed.png" alt="">
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-media">
+    <img id="heroImg" src="hero-ceiling.jpg" alt="Архітектурна натяжна стеля">
+  </div>
+  <div class="hero-content wrap">
+    <!--<div class="hero-tag">MON CIEL · ДНІПРО · 2026</div>
+    <h1>Власне небо<br>над вашою <em>головою</em>.</h1> -->
+
+    <h1>Сучасні натяжні стелі в Дніпрі</h1>
+    <div class="hero-tag">Власне небо<br>над вашою <em>головою</em>.</div>
+    
+    <div class="hero-meta">
+      <p class="hero-lead">Щоразу, повертаючись додому після насиченого дня, ми підсвідомо шукаємо простір, де можна сповільнити біг думок, видихнути та набути гармонії. Ми дивимося нагору — туди, де над нашою головою розвертається нескінченність. У перекладі з французької Mon Ciel означає «Моє Небо». Створіть ваше власне небо вдома, а ми допоможемо вам втілити вашу мрію в реальність. Проектуємо та монтуємо натяжні стелі архітектурного рівня. Тіньові профілі, світлові лінії, зоряне небо. Гарантія 25 років.</p>
+      <div class="hero-cta">
+        <a href="#calculator" class="btn btn-accent">
+          Безкоштовний замір
+          <span class="btn-arrow"></span>
+        </a>
+        <a href="#portfolio" class="btn btn-ghost">
+          Розрахувати вартість
+          <span class="btn-arrow"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">Тіньові профілі</div>
+    <div class="marquee-item">Світлові лінії</div>
+    <div class="marquee-item">Зоряне небо</div>
+    <div class="marquee-item">Трекові системи</div>
+    <div class="marquee-item">Парящі стелі</div>
+    <div class="marquee-item">Тканинні полотна</div>
+    <div class="marquee-item">Тіньові профілі</div>
+    <div class="marquee-item">Світлові лінії</div>
+    <div class="marquee-item">Зоряне небо</div>
+    <div class="marquee-item">Трекові системи</div>
+    <div class="marquee-item">Парящі стелі</div>
+    <div class="marquee-item">Тканинні полотна</div>
+  </div>
+</div>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="section" id="philosophy">
+  <div class="wrap">
+    <div class="philo">
+      <div class="philo-text">
+        <div class="philo-label">Про компанію</div>
+        <h2>Стеля — це <em>небо</em> інтер'єру.</h2>
+        <p class="philo-text">MON CIEL — це не просто монтаж натяжних стель. Це архітектурний підхід до простору. Ми об'єднали кращі світові технології та матеріали з українською майстерністю. Кожен проєкт — це маніфест якості та уваги до деталей.</p>
+        <p class="philo-text">Кожен проєкт — це діалог з архітектором, дизайнером та власником. Ми не робимо «як у всіх». Ми робимо так, як має бути.</p>
+        <div class="philo-stats">
+          <div>
+            <div class="stat-num" data-count="847">0</div>
+            <div class="stat-label">Проєктів</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="25">0</div>
+            <div class="stat-label">Років гарантії</div>
+          </div>
+          <div>
+            <div class="stat-num" data-count="12">0</div>
+            <div class="stat-label">Років досвіду</div>
+          </div>
+        </div>
+      </div>
+      <div class="philo-visual">
+        <img id="philoImg" src="unnamed-T.png" alt="Тіньовий профіль">
+        <div class="philo-badge">
+          <div class="philo-badge-num">5мм</div>
+          <div class="philo-badge-text">Ідеальний тіньовий шов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNOLOGIES ============ -->
+<section class="section" id="technologies">
+  <div class="wrap">
+    <div class="tech-head">
+      <h2>Технології<br><em>досконалості</em></h2>
+      <p>Шість напрямків, кожен з яких перетворює звичайну стелю на архітектурний об'єкт.</p>
+    </div>
+  </div>
+  <div class="tech-grid" id="techGrid">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="section calc" id="calculator">
+  <div class="wrap">
+    <div class="calc-head">
+      <h2>Інженерний <em>розрахунок</em></h2>
+      <p>Точна вартість за 2 хвилини. Результат збігається з кошторисом замірника на 99.9%.</p>
+    </div>
+
+    <div class="calc-wrap">
+      <!-- MAIN -->
+      <div class="calc-main">
+        <div class="calc-progress" id="calcProgress"></div>
+
+        <!-- STEP 1 -->
+        <div class="calc-step" data-step="1">
+          <div class="calc-step-label">Крок 01 / 04</div>
+          <h3>Геометрія приміщення</h3>
+          <p>Оберіть форму кімнати та вкажіть точні розміри.</p>
+
+          <div class="calc-room-types" id="roomTypes"></div>
+
+          <div class="calc-inputs">
+            <div class="calc-field">
+              <label>Довжина</label>
+              <input type="number" id="inpL" value="4" min="1" max="20" step="0.1">
+            </div>
+            <div class="calc-field">
+              <label>Ширина</label>
+              <input type="number" id="inpW" value="3" min="1" max="20" step="0.1">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="calc-step" data-step="2" style="display:none;">
+          <div class="calc-step-label">Крок 02 / 04</div>
+          <h3>Технологія монтажу</h3>
+          <p>Профіль визначає архітектурний характер стелі.</p>
+          <div class="calc-options" id="techOptions"></div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="calc-step" data-step="3" style="display:none;">
+          <div class="calc-step-label">Крок 03 / 04</div>
+          <h3>Тип полотна</h3>
+          <p>Фактура, що задає настрій всьому простору.</p>
+          <div class="calc-options" id="matOptions"></div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="calc-step" data-step="4" style="display:none;">
+          <div class="calc-step-label">Крок 04 / 04</div>
+          <h3>Інтегроване світло</h3>
+          <p>Світлові акценти, що перетворюють стелю на арт-об'єкт.</p>
+          <div class="calc-lighting" id="lightList"></div>
+        </div>
+
+        <div class="calc-nav">
+          <button class="btn btn-ghost" id="btnBack" onclick="stepNav(-1)">
+            <span class="btn-arrow" style="transform: rotate(180deg);"></span>
+            Назад
+          </button>
+          <button class="btn btn-accent" id="btnNext" onclick="stepNav(1)">
+            Далі
+            <span class="btn-arrow"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SIDE -->
+      <div class="calc-side">
+        <div class="calc-side-label">Ваш проєкт</div>
+        <h4>План приміщення</h4>
+        <div class="room-viz" id="roomViz"></div>
+
+        <div class="spec-row"><span>Площа</span><span id="sArea">12 м²</span></div>
+        <div class="spec-row"><span>Периметр</span><span id="sPerim">14 м</span></div>
+        <div class="spec-row"><span>Технологія</span><span id="sTech">Тіньовий</span></div>
+        <div class="spec-row"><span>Полотно</span><span id="sMat">Матове</span></div>
+
+        <div class="calc-total">
+          <div class="calc-total-label">Орієнтовна вартість</div>
+          <div class="calc-total-val"><span id="totalVal">11 340</span><span class="calc-total-currency"> ₴</span></div>
+          <div class="calc-total-note">* Фінальна ціна після безкоштовного заміру</div>
+          <button class="btn btn-accent calc-submit" onclick="alert('Дякуємо! Ми зв\'яжемося з вами протягом 15 хвилин.')">
+            Замовити замір
+            <span class="btn-arrow"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="section" id="portfolio">
+  <div class="wrap">
+    <div class="port-head">
+      <h2>Реалізовані <em>проєкти</em></h2>
+      <a href="#" class="btn btn-ghost">
+        Всі проєкти
+        <span class="btn-arrow"></span>
+      </a>
+    </div>
+    <div class="port-grid" id="portGrid"></div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="proc-head">
+      <h2>Як ми <em>працюємо</em></h2>
+    </div>
+    <div class="proc-list">
+      <div class="proc-item">
+        <div class="proc-num">/ 01</div>
+        <h4 class="proc-title">Замір</h4>
+        <p class="proc-desc">Безкоштовний виїзд інженера. 3D-сканування приміщення лазерним рівнем.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">/ 02</div>
+        <h4 class="proc-title">Проєкт</h4>
+        <p class="proc-desc">3D-візуалізація вашої стелі. Узгодження кожної деталі до міліметра.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">/ 03</div>
+        <h4 class="proc-title">Виробництво</h4>
+        <p class="proc-desc">Виготовлення полотна на власному обладнанні. Контроль якості на кожному етапі.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">/ 04</div>
+        <h4 class="proc-title">Монтаж</h4>
+        <p class="proc-desc">1–2 дні. Чисто, акуратно, без пилу. Ви навіть не помітите, що ми були.</p>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">/ 05</div>
+        <h4 class="proc-title">Гарантія</h4>
+        <p class="proc-desc">25 років офіційної гарантії. Сервісне обслуговування протягом усього терміну.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL ============ -->
+<section class="section testi">
+  <div class="wrap">
+    <div class="testi-grid">
+      <div class="testi-side">
+        <div class="testi-rating">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testi-rating-text">4.9 / 5 · 847 відгуків клієнтів</p>
+        <h2>Що кажуть<br>наші <em>клієнти</em></h2>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">Замовляли тіньову стелю зі світловими лініями у вітальню. Команда MON CIEL зробила все на такому рівні, що наш дизайнер сам запитав контакт — сказав, що вперше бачить таку точність виконання. Рекомендую всім, хто цінує якість.</p>
+        <div class="testi-author">
+          <div>
+            <div class="testi-name">Олена Коваленко</div>
+            <div class="testi-loc">ЖК Січова Слава, Дніпро</div>
+          </div>
+          <div class="testi-project">Тіньовий профіль + LED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="cta-bg">
+    <img id="ctaImg" src="https://image.qwenlm.ai/public_source/842da138-64a2-4d63-997d-db857ce9726b/1976d4190-6f3e-4f4e-99a4-bd83f8f38a51.png" alt="">
+  </div>
+  <div class="wrap">
+    <div class="cta-content">
+      <div class="cta-label">Безкоштовний замір</div>
+      <h2>Час створити <em>ідеальну</em> стелю.</h2>
+      <p>Залиште заявку і наш інженер зв'яжеться з вами протягом 15 хвилин. Виїзд по Дніпру та області — безкоштовно.</p>
+      <div class="cta-actions">
+        <a href="tel:+380671234567" class="btn btn-accent">
+          +380 67 123 45 67
+          <span class="btn-arrow"></span>
+        </a>
+        <a href="#calculator" class="btn btn-ghost">
+          Розрахувати онлайн
+          <span class="btn-arrow"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <h3>MON CIEL</h3>
+        <p>Архітектурні натяжні стелі у Дніпрі. Ми не просто монтуємо стелі — ми створюємо простір, який надихає.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Послуги</h5>
+        <a href="#">Тіньові стелі</a>
+        <a href="#">Парящі стелі</a>
+        <a href="#">Світлові лінії</a>
+        <a href="#">Зоряне небо</a>
+        <a href="#">Трекові системи</a>
+      </div>
+      <div class="foot-col">
+        <h5>Компанія</h5>
+        <a href="#philosophy">Про нас</a>
+        <a href="#portfolio">Проєкти</a>
+        <a href="#">Блог</a>
+        <a href="#">Вакансії</a>
+      </div>
+      <div class="foot-col">
+        <h5>Контакти</h5>
+        <a href="tel:+380671234567">+380 67 123 45 67</a>
+        <a href="mailto:info@MON CIEL.com">info@MON CIEL.com</a>
+        <p>Дніпро, вул. Січових Стрільців, 15</p>
+        <p>Пн–Нд: 09:00 – 20:00</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 MON CIEL. Всі права захищено.</div>
+      <div>Політика конфіденційності · Умови</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ IMAGE GENERATION ============ */
+// Generate premium images for the site
+const imagesNeeded = [
+  { prompt: "Luxurious modern living room with shadow gap stretch ceiling, matte white finish, integrated LED light lines along perimeter, minimalist Scandinavian interior, architectural photography, soft warm lighting, high-end residential, shot on Hasselblad, 8K quality, professional interior design magazine cover", id: "hero" },
+  { prompt: "Extreme close-up macro shot of aluminum shadow gap ceiling profile 5mm, precise architectural detail, matte black shadow line against white ceiling, dramatic side lighting, architectural photography, ultra-sharp focus, professional product photography", id: "philo" },
+  { prompt: "Modern bedroom with starry sky stretch ceiling using fiber optic lights, deep navy blue fabric, romantic atmosphere, luxury interior, architectural photography, night ambiance, high-end residential", id: "nav" },
+  { prompt: "Contemporary kitchen with glossy black stretch ceiling reflecting pendant lights, minimalist design, marble island, architectural interior photography, dramatic lighting, luxury home", id: "cta" }
+];
+
+/* ============ TOP NAV SCROLL ============ */
+const topnav = document.getElementById('topnav');
+window.addEventListener('scroll', () => {
+  topnav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ============ FULL NAV ============ */
+function toggleNav() {
+  document.getElementById('overlayNav').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('overlayNav').classList.contains('open') ? 'hidden' : '';
+}
+function closeNav() {
+  document.getElementById('overlayNav').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ============ ANIMATED COUNTERS ============ */
+const counters = document.querySelectorAll('.stat-num');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      let current = 0;
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      const interval = duration / steps;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, interval);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+/* ============ TECHNOLOGIES GRID ============ */
+const techData = [
+  { num: "01", name: "Тіньові стелі", desc: "Ідеальний 5мм шов без видимого багета", prompt: "Shadow gap stretch ceiling detail, 5mm black shadow line, white matte ceiling, modern minimalist interior, architectural photography" },
+  { num: "02", name: "Світлові лінії", desc: "Інтегровані LED-профілі вздовж стелі", prompt: "Linear LED light strips integrated into stretch ceiling, geometric pattern, modern living room, architectural lighting, warm white glow" },
+  { num: "03", name: "Парящі стелі", desc: "LED-підсвічування по периметру", prompt: "Floating stretch ceiling with perimeter LED backlight, soft glow effect, modern bedroom, architectural interior photography" },
+  { num: "04", name: "Зоряне небо", desc: "Фіброоптичні точки у стелі", prompt: "Starry sky stretch ceiling with fiber optic lights, deep blue fabric, luxury bedroom, romantic atmosphere, night sky effect" },
+  { num: "05", name: "Трекові системи", desc: "Магнітні треки та споти", prompt: "Magnetic track lighting system on stretch ceiling, black aluminum tracks, modern kitchen, architectural lighting design" },
+  { num: "06", name: "Тканинні полотна", desc: "Descor, Clipso — преміум якість", prompt: "Fabric stretch ceiling Descor texture close-up, premium textile material, soft matte finish, architectural detail photography" }
+];
+
+async function buildTechGrid() {
+  const grid = document.getElementById('techGrid');
+  for (const tech of techData) {
+    const card = document.createElement('div');
+    card.className = 'tech-card';
+    card.innerHTML = `
+      <img class="tech-img" alt="${tech.name}" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%2318181D' width='400' height='500'/></svg>">
+      <div class="tech-card-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </div>
+      <div class="tech-card-content">
+        <div class="tech-card-num">/ ${tech.num}</div>
+        <div>
+          <h3>${tech.name}</h3>
+          <p>${tech.desc}</p>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  }
+}
+buildTechGrid();
+
+/* ============ PORTFOLIO GRID ============ */
+const portData = [
+  { cat: "Тіньовий профіль", name: "Резиденція Soborne", loc: "Дніпро, ЖК Січова Слава", prompt: "Modern luxury living room with shadow gap stretch ceiling, matte white, minimalist furniture, panoramic windows, architectural interior photography" },
+  { cat: "Світлові лінії", name: "Пентхаус Башта", loc: "Дніпро, Набережна Перемоги", prompt: "Luxury penthouse with linear LED lighting in stretch ceiling, open plan living, city view through floor-to-ceiling windows, night photography" },
+  { cat: "Зоряне небо", name: "Приватний маєток", loc: "Дніпро, Петриківка", prompt: "Luxury bedroom with starry sky fiber optic stretch ceiling, deep blue fabric, romantic atmosphere, high-end residential interior" },
+  { cat: "Трекові системи", name: "Офіс IT-компанії", loc: "Дніпро, Менора Center", prompt: "Modern office space with magnetic track lighting on stretch ceiling, black tracks, contemporary workspace design" },
+  { cat: "Паряща стеля", name: "Ресторан BAO", loc: "Дніпро, центральний район", prompt: "Upscale restaurant interior with floating stretch ceiling, perimeter LED backlight, warm atmosphere, architectural lighting" },
+  { cat: "Тканинна стеля", name: "Квартира дизайнерів", loc: "Дніпро, ЖК Новодворський", prompt: "Elegant apartment with fabric stretch ceiling Descor, soft matte texture, contemporary furniture, natural light" }
+];
+
+async function buildPortfolio() {
+  const grid = document.getElementById('portGrid');
+  for (const p of portData) {
+    const item = document.createElement('div');
+    item.className = 'port-item';
+    item.innerHTML = `
+      <img class="port-img" alt="${p.name}" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><rect fill='%2318181D' width='800' height='600'/></svg>">
+      <div class="port-info">
+        <div class="port-cat">${p.cat}</div>
+        <div class="port-name">${p.name}</div>
+        <div class="port-loc">${p.loc}</div>
+      </div>
+    `;
+    grid.appendChild(item);
+  }
+}
+buildPortfolio();
+
+/* ============ CALCULATOR LOGIC ============ */
+const state = {
+  step: 1,
+  room: 'rect',
+  length: 4,
+  width: 3,
+  tech: { id: 'shadow', name: 'Тіньовий', price: 450, mult: 1.2 },
+  mat: { id: 'matte', name: 'Матове', price: 320 },
+  light: { line: 0, spot: 0, track: 0, star: 0 }
+};
+
+const techList = [
+  { id: 'shadow', name: 'Тіньовий Euroform', meta: '450 ₴/м · 5мм шов', price: 450, mult: 1.2 },
+  { id: 'floating', name: 'Парящий профіль', meta: '380 ₴/м · LED-підсвітка', price: 380, mult: 1.15 },
+  { id: 'slotted', name: 'Слотовий профіль', meta: '520 ₴/м · архітектурний', price: 520, mult: 1.3 },
+  { id: 'classic', name: 'Класичний гарпун', meta: '280 ₴/м · традиційний', price: 280, mult: 1.0 }
+];
+
+const matList = [
+  { id: 'matte', name: 'Матове полотно', meta: '320 ₴/м² · класика', price: 320 },
+  { id: 'satin', name: 'Сатинове полотно', meta: '350 ₴/м² · перламутр', price: 350 },
+  { id: 'glossy', name: 'Глянцеве полотно', meta: '380 ₴/м² · дзеркало', price: 380 },
+  { id: 'fabric', name: 'Тканинне Descor', meta: '650 ₴/м² · преміум', price: 650 }
+];
+
+const lightList = [
+  { id: 'line', name: 'Світлові лінії', price: 850, unit: 'пог. м' },
+  { id: 'spot', name: 'Вбудовані споти', price: 450, unit: 'шт' },
+  { id: 'track', name: 'Трекова система', price: 1200, unit: 'м' },
+  { id: 'star', name: 'Зоряне небо', price: 180, unit: 'точок' }
+];
+
+const rooms = [
+  { id: 'rect', name: 'Прямокутник', svg: '<rect x="20" y="20" width="160" height="120" fill="none" stroke="currentColor" stroke-width="1.5"/>' },
+  { id: 'l', name: 'Г-подібна', svg: '<path d="M 20 20 L 180 20 L 180 90 L 110 90 L 110 140 L 20 140 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>' },
+  { id: 'u', name: 'П-подібна', svg: '<path d="M 20 20 L 180 20 L 180 140 L 130 140 L 130 90 L 70 90 L 70 140 L 20 140 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>' },
+  { id: 'trap', name: 'Трапеція', svg: '<path d="M 40 20 L 160 20 L 180 140 L 20 140 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>' }
+];
+
+function renderProgress() {
+  const el = document.getElementById('calcProgress');
+  el.innerHTML = '';
+  for (let i = 1; i <= 4; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'calc-progress-bar' + (i <= state.step ? ' active' : '');
+    el.appendChild(bar);
+  }
+}
+
+function renderRoomTypes() {
+  const el = document.getElementById('roomTypes');
+  el.innerHTML = '';
+  rooms.forEach(r => {
+    const btn = document.createElement('button');
+    btn.className = 'room-type' + (state.room === r.id ? ' active' : '');
+    btn.innerHTML = `<svg width="40" height="30" viewBox="0 0 200 160" fill="none" stroke-width="1.5">${r.svg}</svg><span>${r.name}</span>`;
+    btn.onclick = () => { state.room = r.id; renderRoomTypes(); renderViz(); calculate(); };
+    el.appendChild(btn);
+  });
+}
+
+function renderTechOptions() {
+  const el = document.getElementById('techOptions');
+  el.innerHTML = '';
+  techList.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'calc-opt' + (state.tech.id === t.id ? ' active' : '');
+    btn.innerHTML = `<span class="calc-opt-name">${t.name}</span><span class="calc-opt-meta">${t.meta}</span>`;
+    btn.onclick = () => { state.tech = t; renderTechOptions(); calculate(); };
+    el.appendChild(btn);
+  });
+}
+
+function renderMatOptions() {
+  const el = document.getElementById('matOptions');
+  el.innerHTML = '';
+  matList.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'calc-opt' + (state.mat.id === m.id ? ' active' : '');
+    btn.innerHTML = `<span class="calc-opt-name">${m.name}</span><span class="calc-opt-meta">${m.meta}</span>`;
+    btn.onclick = () => { state.mat = m; renderMatOptions(); calculate(); };
+    el.appendChild(btn);
+  });
+}
+
+function renderLighting() {
+  const el = document.getElementById('lightList');
+  el.innerHTML = '';
+  lightList.forEach(l => {
+    const item = document.createElement('div');
+    item.className = 'light-item';
+    item.innerHTML = `
+      <div>
+        <div class="light-name">${l.name}</div>
+        <div class="light-price">${l.price} ₴ / ${l.unit}</div>
+      </div>
+      <div></div>
+      <div class="qty">
+        <button onclick="adjLight('${l.id}', -1)">−</button>
+        <span class="qty-val">${state.light[l.id]}</span>
+        <button onclick="adjLight('${l.id}', 1)">+</button>
+      </div>
+    `;
+    el.appendChild(item);
+  });
+}
+
+function adjLight(id, delta) {
+  state.light[id] = Math.max(0, state.light[id] + delta);
+  renderLighting();
+  calculate();
+}
+
+function stepNav(dir) {
+  const newStep = state.step + dir;
+  if (newStep < 1 || newStep > 4) {
+    if (newStep > 4) {
+      alert('Дякуємо! Ми зв\'яжемося з вами для уточнення деталей.');
+    }
+    return;
+  }
+  document.querySelector(`.calc-step[data-step="${state.step}"]`).style.display = 'none';
+  state.step = newStep;
+  document.querySelector(`.calc-step[data-step="${state.step}"]`).style.display = 'block';
+  renderProgress();
+  document.getElementById('btnBack').style.visibility = state.step === 1 ? 'hidden' : 'visible';
+  document.getElementById('btnNext').innerHTML = state.step === 4 ? 'Отримати кошторис <span class="btn-arrow"></span>' : 'Далі <span class="btn-arrow"></span>';
+}
+
+function renderViz() {
+  const viz = document.getElementById('roomViz');
+  const r = rooms.find(x => x.id === state.room);
+  viz.innerHTML = `
+    <svg viewBox="0 0 200 200" style="color: var(--accent);">
+      <defs>
+        <pattern id="calcGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="200" height="200" fill="url(#calcGrid)"/>
+      ${r.svg}
+      <text x="100" y="15" text-anchor="middle" fill="var(--text-dim)" font-size="8" font-family="Manrope">${state.length} м</text>
+      <text x="10" y="100" text-anchor="middle" fill="var(--text-dim)" font-size="8" font-family="Manrope" transform="rotate(-90, 10, 100)">${state.width} м</text>
+    </svg>
+  `;
+}
+
+function calculate() {
+  const { length, width, room } = state;
+  let area = length * width;
+  let perimeter = 2 * (length + width);
+
+  if (room === 'l') {
+    area = length * width - (length / 3) * (width / 3);
+    perimeter = 2 * (length + width) + Math.min(length, width);
+  } else if (room === 'u') {
+    area = length * width - 2 * ((length / 3) * (width / 3));
+    perimeter = 2 * (length + width) + 2 * (length / 3);
+  } else if (room === 'trap') {
+    area = ((length + length * 0.6) / 2) * width;
+    perimeter = length + length * 0.6 + 2 * width;
+  }
+
+  area = Math.round(area * 10) / 10;
+  perimeter = Math.round(perimeter * 10) / 10;
+
+  const profileCost = perimeter * state.tech.price;
+  const canvasCost = area * state.mat.price;
+  const lightCost =
+    state.light.line * lightList[0].price +
+    state.light.spot * lightList[1].price +
+    state.light.track * lightList[2].price +
+    state.light.star * lightList[3].price;
+  const total = Math.round((profileCost + canvasCost + lightCost) * state.tech.mult);
+
+  document.getElementById('sArea').textContent = area + ' м²';
+  document.getElementById('sPerim').textContent = perimeter + ' м';
+  document.getElementById('sTech').textContent = state.tech.name;
+  document.getElementById('sMat').textContent = state.mat.name;
+  document.getElementById('totalVal').textContent = total.toLocaleString('uk-UA');
+}
+
+document.getElementById('inpL').addEventListener('input', e => {
+  state.length = parseFloat(e.target.value) || 1;
+  renderViz();
+  calculate();
+});
+document.getElementById('inpW').addEventListener('input', e => {
+  state.width = parseFloat(e.target.value) || 1;
+  renderViz();
+  calculate();
+});
+
+/* ============ INIT ============ */
+renderProgress();
+renderRoomTypes();
+renderTechOptions();
+renderMatOptions();
+renderLighting();
+renderViz();
+calculate();
+
+/* ============ GENERATE & INJECT IMAGES ============ */
+(async function generateImages() {
+  // We'll use placeholder images with rich styling; real images generated on demand
+})();
+
+/* ============ SMOOTH SCROLL ============ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
